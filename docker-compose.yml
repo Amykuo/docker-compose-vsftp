@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  ftpd:
+    image: fauria/vsftpd
+    container_name: vsftpd
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/ftpuser:/home/vsftpd
+    environment:
+      - TZ=Asia/Taipei
+      - FTP_USER=test
+      - FTP_PASS=testftp
+      - PASV_ENABLE=YES
+      - PASV_ADDRESS=192.168.91.128
+      - PASV_MIN=21100
+      - PASV_MAX=21110
+    ports:
+      - "20:20"
+      - "21:21"
+      - "21100-21110:21100-21110"
+
